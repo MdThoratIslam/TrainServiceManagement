@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Station\StoreStationRequest;
+use App\Http\Requests\Station\UpdateStationRequest;
+use App\Http\Resources\Station\StationResource;
 use App\Models\Station;
-use App\Http\Requests\StoreStationRequest;
-use App\Http\Requests\UpdateStationRequest;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 
 class StationController extends Controller
 {
@@ -13,7 +17,8 @@ class StationController extends Controller
      */
     public function index()
     {
-        //
+        $stations = Station::all();
+        return StationResource::collection($stations);
     }
 
     /**
@@ -29,8 +34,24 @@ class StationController extends Controller
      */
     public function store(StoreStationRequest $request)
     {
-        //
+        try {
+            $station = Station::create(
+                [
+                    'name'      => $request->name,
+                    'code'      => $request->code,
+                ]
+            );
+            return new StationResource($station);
+        } catch (\Exception $e) {
+            return response()->json(
+                [
+                'error' => 'Failed to create station',
+                 'message' =>$e->getMessage()
+            ],
+                500);
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -53,14 +74,33 @@ class StationController extends Controller
      */
     public function update(UpdateStationRequest $request, Station $station)
     {
-        //
+        $validatedData = $request->validated();
+        $station->update($validatedData);
+        return new StationResource($station);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Station $station)
+    public function destroy($id)
     {
-        //
+        try {
+            $station = Station::findOrFail($id);
+            $station->delete();
+            return response()->json([
+                'message'       => 'Station deleted successfully.',
+                'data'          => new StationResource($station)
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'error'         => 'Station not found',
+                'message'       =>$e->getMessage()
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error'         => 'Failed to delete station',
+                'message'       =>$e->getMessage()
+            ], 500);
+        }
     }
 }
