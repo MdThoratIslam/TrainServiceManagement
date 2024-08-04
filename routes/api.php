@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\AuthController;
-use App\Http\Controllers\StationController;
+use App\Http\Controllers\Api\Station\StationController;
+use App\Http\Controllers\Api\Train\TrainController;
+use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ()
 {
@@ -15,4 +15,6 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ()
 });
 
 Route::resource('station', StationController::class)->only(['index', 'store', 'update', 'destroy'])->middleware('auth:api');
+
+Route::resource('train', TrainController::class)->only(['index', 'store', 'update', 'destroy'])->middleware('auth:api');
 
