@@ -1,0 +1,444 @@
+{
+	"info": {
+		"_postman_id": "66f06d6f-b21a-4b70-a47f-b1d2c64988d9",
+		"name": "Train Service Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17894341"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer $accessToken",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Tourat",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tourat2@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "c_password",
+									"value": "123456789",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url_api}}/auth/register",
+						"description": "This is User Registration Api."
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Tourat",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "tourat2@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "c_password",
+									"value": "123456789",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{url_api}}/auth/login",
+						"description": "This is User Login Api."
+					},
+					"response": []
+				},
+				{
+					"name": "profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "B {{accessToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Tourat",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "tourat1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "c_password",
+									"value": "123456789",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{url_api}}/auth/profile",
+						"description": "This is User Profile Api. this api acces if you login."
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "B {{accessToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Tourat",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "tourat1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "c_password",
+									"value": "123456789",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{url_api}}/auth/refresh",
+						"description": "This is User Refresh Token Api. This is new token ganarete for access."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "stations",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{url_api}}/station",
+						"description": "This Route make for All Station List."
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Tongi Station",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "TG-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url_api}}/station/",
+						"description": "This Route make for New Station Create."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Tajgaon Station",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "DH-04",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url_api}}/station/5",
+						"description": "This Route make for New Station Create."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Tajgaon Station",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "DH-05",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url_api}}/station/2",
+						"description": "This Route make for New Station Create."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Train",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{url_api}}/train/"
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Tista Express\",\r\n  \"code\": 401,\r\n  \"stops\": [\r\n    {\r\n      \"station_id\": 1,\r\n      \"arrival_time\": \"07:15:00\",\r\n      \"departure_time\": \"07:15:00\"\r\n    },\r\n    {\r\n      \"station_id\": 2,\r\n      \"arrival_time\": \"07:30:00\",\r\n      \"departure_time\": \"07:35:00\"\r\n    },\r\n    {\r\n      \"station_id\": 4,\r\n      \"arrival_time\": \"08:00:00\",\r\n      \"departure_time\": \"08:15:00\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url_api}}/train/"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Tista Express\",\r\n  \"code\": 401,\r\n  \"stops\": [\r\n    {\r\n      \"station_id\": 1,\r\n      \"arrival_time\": \"07:15:00\",\r\n      \"departure_time\": \"07:35:00\"\r\n    },\r\n    {\r\n      \"station_id\": 2,\r\n      \"arrival_time\": \"07:30:00\",\r\n      \"departure_time\": \"07:35:00\"\r\n    },\r\n    {\r\n      \"station_id\": 4,\r\n      \"arrival_time\": \"08:00:00\",\r\n      \"departure_time\": \"08:15:00\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url_api}}/train/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{url_api}}/train/1"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjI3NjUzMzgsImV4cCI6MTcyMjc2ODkzOCwibmJmIjoxNzIyNzY1MzM4LCJqdGkiOiJuTmhnYUFFWkp5ZXVMclhlIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.s6uIixkgVofnAFw4x_sUldJzglalYFcpAHEuy3ENRBU"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url_api",
+			"value": "http://127.0.0.1:8000/api",
+			"type": "string"
+		}
+	]
+}
