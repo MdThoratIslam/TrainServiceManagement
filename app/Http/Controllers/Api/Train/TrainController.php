@@ -64,28 +64,21 @@ class TrainController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Train $train)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Train $train)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateTrainRequest $request, Train $train)
     {
-        //
+        $train->update($request->only('name', 'code'));
+        if ($request->has('stops')) {
+            $train->stops()->delete();
+            foreach ($request->stops as $stopData)
+            {
+                $train->stops()->create([
+                    'station_id'        => $stopData['station_id'],
+                    'arrival_time'      => $stopData['arrival_time'],
+                    'departure_time'    => $stopData['departure_time'],
+                ]);
+            }
+        }
+        return new TrainResource($train->load('stops'));
     }
 
     /**
@@ -93,6 +86,25 @@ class TrainController extends Controller
      */
     public function destroy(Train $train)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $train->stops()->delete();
+            $train->delete();
+            DB::commit();
+            return response()->json(
+                [
+                    'message'   => 'Train and its stops deleted successfully',
+                    'data'      => new TrainResource($train),
+                ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(
+                [
+                    'error' => 'Failed to delete train',
+                    'message' => $e->getMessage()
+                ],
+                500
+            );
+        }
     }
 }

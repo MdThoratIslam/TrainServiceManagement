@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Station;
+namespace App\Http\Controllers\Api\Train;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Train\stop\StoreStopRequest;

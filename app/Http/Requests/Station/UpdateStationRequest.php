@@ -10,8 +10,6 @@ class UpdateStationRequest extends StoreStationRequest
     public function rules(): array
     {
         $stationId = $this->route('station');
-
-
         return array_merge(parent::rules(), [
             'name'          => ['required', 'string', 'max:255'],
             'code'          => [
