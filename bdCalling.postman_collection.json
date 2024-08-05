@@ -39,7 +39,7 @@
 								},
 								{
 									"key": "email",
-									"value": "tourat2@gmail.com",
+									"value": "tourat@gmail.com",
 									"type": "text"
 								},
 								{
@@ -87,7 +87,7 @@
 								},
 								{
 									"key": "email",
-									"value": "tourat2@gmail.com",
+									"value": "tourat@gmail.com",
 									"type": "text"
 								},
 								{
@@ -185,7 +185,7 @@
 								},
 								{
 									"key": "email",
-									"value": "tourat1@gmail.com",
+									"value": "tourat@gmail.com",
 									"type": "text"
 								},
 								{
@@ -243,12 +243,12 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Tongi Station",
+									"value": "Joydabpur Station",
 									"type": "text"
 								},
 								{
 									"key": "code",
-									"value": "TG-01",
+									"value": "JD-01",
 									"type": "text"
 								}
 							]
@@ -274,12 +274,12 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Tajgaon Station",
+									"value": "Joydabpur Station",
 									"type": "text"
 								},
 								{
 									"key": "code",
-									"value": "DH-04",
+									"value": "JD-01",
 									"type": "text"
 								}
 							]
@@ -353,7 +353,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Tista Express\",\r\n  \"code\": 401,\r\n  \"stops\": [\r\n    {\r\n      \"station_id\": 1,\r\n      \"arrival_time\": \"07:15:00\",\r\n      \"departure_time\": \"07:15:00\"\r\n    },\r\n    {\r\n      \"station_id\": 2,\r\n      \"arrival_time\": \"07:30:00\",\r\n      \"departure_time\": \"07:35:00\"\r\n    },\r\n    {\r\n      \"station_id\": 4,\r\n      \"arrival_time\": \"08:00:00\",\r\n      \"departure_time\": \"08:15:00\"\r\n    }\r\n  ]\r\n}\r\n",
+							"raw": "{\r\n  \"name\": \"Test Express\",\r\n  \"code\": 401,\r\n  \"stops\": [\r\n    {\r\n      \"station_id\": 1,\r\n      \"arrival_time\": \"07:15:00\",\r\n      \"departure_time\": \"07:15:00\",\r\n      \"distance_from_start\" :   \"00.00\"\r\n    },\r\n    {\r\n      \"station_id\": 2,\r\n      \"arrival_time\": \"07:30:00\",\r\n      \"departure_time\": \"07:35:00\",\r\n      \"distance_from_start\" :   \"20.00\"\r\n    },\r\n    {\r\n      \"station_id\": 4,\r\n      \"arrival_time\": \"08:00:00\",\r\n      \"departure_time\": \"08:15:00\",\r\n      \"distance_from_start\" :   \"30.00\"\r\n    }\r\n  ]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -377,7 +377,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Tista Express\",\r\n  \"code\": 401,\r\n  \"stops\": [\r\n    {\r\n      \"station_id\": 1,\r\n      \"arrival_time\": \"07:15:00\",\r\n      \"departure_time\": \"07:35:00\"\r\n    },\r\n    {\r\n      \"station_id\": 2,\r\n      \"arrival_time\": \"07:30:00\",\r\n      \"departure_time\": \"07:35:00\"\r\n    },\r\n    {\r\n      \"station_id\": 4,\r\n      \"arrival_time\": \"08:00:00\",\r\n      \"departure_time\": \"08:15:00\"\r\n    }\r\n  ]\r\n}\r\n",
+							"raw": "{\r\n  \"name\": \"Tista Express\",\r\n  \"code\": 401,\r\n  \"stops\": [\r\n    {\r\n      \"station_id\": 1,\r\n      \"arrival_time\": \"07:15:00\",\r\n      \"departure_time\": \"07:35:00\",\r\n      \"distance_from_start\" :   \"00.00\"\r\n    },\r\n    {\r\n      \"station_id\": 2,\r\n      \"arrival_time\": \"07:30:00\",\r\n      \"departure_time\": \"07:35:00\",\r\n      \"distance_from_start\" :   \"20.00\"\r\n    },\r\n    {\r\n      \"station_id\": 3,\r\n      \"arrival_time\": \"08:00:00\",\r\n      \"departure_time\": \"08:15:00\",\r\n      \"distance_from_start\" :   \"80.00\"\r\n    },\r\n    {\r\n      \"station_id\": 4,\r\n      \"arrival_time\": \"10:00:00\",\r\n      \"departure_time\": \"10:15:00\",\r\n      \"distance_from_start\" :   \"130.00\"\r\n    }\r\n  ]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -404,12 +404,120 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "deposit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "100.00",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Initial deposit",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url_api}}/wallet/"
+					},
+					"response": []
+				},
+				{
+					"name": "Transactions History",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "100.00",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Initial deposit",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url_api}}/wallet/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ticket",
+			"item": [
+				{
+					"name": "Purchasing Ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "train_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "start_stop_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "end_stop_id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url_api}}/ticket"
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
 		"type": "bearer",
 		"bearer": {
-			"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjI3NjUzMzgsImV4cCI6MTcyMjc2ODkzOCwibmJmIjoxNzIyNzY1MzM4LCJqdGkiOiJuTmhnYUFFWkp5ZXVMclhlIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.s6uIixkgVofnAFw4x_sUldJzglalYFcpAHEuy3ENRBU"
+			"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjI3OTAwMDEsImV4cCI6MTcyMjc5MzYwMSwibmJmIjoxNzIyNzkwMDAxLCJqdGkiOiI1eVFKWXFGS0lyUnlYaEE5Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.HpVymTVo_PdH50H2k5ENIjB4BITtaMt7-MUdiq6GlRw"
 		}
 	},
 	"event": [

@@ -132,8 +132,11 @@ Once you have created the database, the next step is to run migrations to set up
    ```bash
    php artisan migrate
    ```
-
-## Step 6: Using Postman Collection
+## Step 6: Run This Project 
+```bash
+   php artisan serve
+```
+## Step 7: Using Postman Collection
 
 After setting up the database and running migrations, you can use Postman to interact with your API. Follow these steps to import and use the Postman collection:
 
