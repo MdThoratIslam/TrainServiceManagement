@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('ticket_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('train_id')->constrained('trains')->onDelete('cascade');
             $table->foreignId('start_stop_id')->constrained('stops')->onDelete('cascade');
             $table->foreignId('end_stop_id')->constrained('stops')->onDelete('cascade');
             $table->decimal('fare', 15, 2);

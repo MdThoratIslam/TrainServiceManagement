@@ -44,10 +44,11 @@ class TrainController extends Controller
             foreach ($request->stops as $stopData)
             {
                 $train->stops()->create([
-                    'train_id'          => $train->id,
-                    'station_id'        => $stopData['station_id'],
-                    'arrival_time'      => $stopData['arrival_time'],
-                    'departure_time'    => $stopData['departure_time'],
+                    'train_id'              => $train->id,
+                    'station_id'            => $stopData['station_id'],
+                    'arrival_time'          => $stopData['arrival_time'],
+                    'departure_time'        => $stopData['departure_time'],
+                    'distance_from_start'   => $stopData['distance_from_start'],
                 ]);
             }
             DB::commit();
@@ -66,24 +67,53 @@ class TrainController extends Controller
 
     public function update(UpdateTrainRequest $request, Train $train)
     {
-        $train->update($request->only('name', 'code'));
-        if ($request->has('stops')) {
-            $train->stops()->delete();
-            foreach ($request->stops as $stopData)
-            {
-                $train->stops()->create([
-                    'station_id'        => $stopData['station_id'],
-                    'arrival_time'      => $stopData['arrival_time'],
-                    'departure_time'    => $stopData['departure_time'],
-                ]);
+        try {
+            DB::beginTransaction();
+
+            // Update train's basic information
+            $train->update($request->only('name', 'code'));
+
+            if ($request->has('stops')) {
+                foreach ($request->stops as $stopData) {
+                    // Find stop by unique combination of station_id and arrival_time
+                    $stop = $train->stops()->where('station_id', $stopData['station_id'])
+                        ->where('arrival_time', $stopData['arrival_time'])
+                        ->first();
+
+                    if ($stop) {
+                        // Update the existing stop
+                        $stop->update([
+                            'station_id'          => $stopData['station_id'],
+                            'arrival_time'        => $stopData['arrival_time'],
+                            'departure_time'      => $stopData['departure_time'],
+                            'distance_from_start' => $stopData['distance_from_start'],
+                        ]);
+                    } else {
+                        // Create a new stop if no matching stop found
+                        $train->stops()->create([
+                            'station_id'          => $stopData['station_id'],
+                            'arrival_time'        => $stopData['arrival_time'],
+                            'departure_time'      => $stopData['departure_time'],
+                            'distance_from_start' => $stopData['distance_from_start'],
+                        ]);
+                    }
+                }
             }
+
+            DB::commit();
+            return new TrainResource($train->load('stops'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'error'   => 'An error occurred while updating the train.',
+                'message' => $e->getMessage()
+            ], 500);
         }
-        return new TrainResource($train->load('stops'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
+
+
     public function destroy(Train $train)
     {
         try {

@@ -18,7 +18,7 @@ class Ticket extends Model
             $table->decimal('fare', 15, 2);
             $table->timestamps();
         });*/
-    protected $fillable = ['user_id', 'ticket_id', 'start_stop_id', 'end_stop_id', 'fare'];
+    protected $fillable = ['user_id', 'train_id', 'start_stop_id', 'end_stop_id', 'fare'];
 
     public function user()
     {

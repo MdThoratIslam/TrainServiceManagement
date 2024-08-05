@@ -28,6 +28,7 @@ class StoreTrainRequest extends FormRequest
             'stops.*.station_id'        => 'required|integer|exists:stations,id',
             'stops.*.arrival_time'      => 'required|date_format:H:i:s',
             'stops.*.departure_time'    => 'required|date_format:H:i:s|after_or_equal:stops.*.arrival_time',
+            'stops.*.distance_from_start' => 'required|numeric|min:0|max:999999.99',
         ];
     }
 
@@ -54,6 +55,10 @@ class StoreTrainRequest extends FormRequest
             'stops.*.departure_time.required'       => 'The departure time is required for each stop.',
             'stops.*.departure_time.date_format'    => 'The departure time must be in the format H:i:s.',
             'stops.*.departure_time.after_or_equal' => 'The departure time must be after or equal to the arrival time for each stop.',
+            'stops.*.distance_from_start.required'  => 'The distance from start is required for each stop.',
+            'stops.*.distance_from_start.numeric'   => 'The distance from start must be a numeric value.',
+            'stops.*.distance_from_start.min'       => 'The distance from start must be at least 0.',
+            'stops.*.distance_from_start.max'       => 'The distance from start may not be greater than 999999.99.',
         ];
     }
 }

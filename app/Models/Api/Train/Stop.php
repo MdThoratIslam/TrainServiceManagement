@@ -13,7 +13,7 @@ class Stop extends Model
 
 
 
-    protected $fillable = ['train_id', 'station_id', 'arrival_time', 'departure_time'];
+    protected $fillable = ['train_id', 'station_id', 'arrival_time', 'departure_time','distance_from_start'];
 
     public function train()
     {

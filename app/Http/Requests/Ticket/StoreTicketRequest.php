@@ -32,17 +32,17 @@ class StoreTicketRequest extends FormRequest
     {
         return [
             //
-            'ticket_id' => 'required|exists:tickets,id',
-            'start_stop_id' => 'required|exists:stops,id',
-            'end_stop_id' => 'required|exists:stops,id',
+            'train_id'          => 'required|exists:trains,id',
+            'start_stop_id'     => 'required|exists:stops,id',
+            'end_stop_id'       => 'required|exists:stops,id',
         ];
     }
     //need message
     public function messages(): array
     {
         return [
-            'ticket_id.required'        => 'Ticket ID is required',
-            'ticket_id.exists'          => 'Ticket ID does not exist',
+            'train_id.required'         => 'Train ID is required',
+            'train_id.exists'           => 'Train ID does not exist',
             'start_stop_id.required'    => 'Start Stop ID is required',
             'start_stop_id.exists'      => 'Start Stop ID does not exist',
             'end_stop_id.required'      => 'End Stop ID is required',

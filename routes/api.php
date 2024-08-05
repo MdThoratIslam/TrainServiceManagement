@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Station\StationController;
 use App\Http\Controllers\Api\Train\TrainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Transaction\TransactionController;
+use App\Http\Controllers\Api\Ticket\TicketController;
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ()
 {
     Route::post('/register',            [AuthController::class, 'register']);
@@ -21,3 +22,5 @@ Route::apiResource('train', TrainController::class)->only(['index', 'store', 'up
 
 
 Route::apiResource('wallet ', TransactionController::class)->only(['index', 'store', 'update', 'destroy'])->middleware('auth:api');
+Route::apiResource('ticket ', TicketController::class)->only(['index', 'store', 'update', 'destroy'])->middleware
+('auth:api');
